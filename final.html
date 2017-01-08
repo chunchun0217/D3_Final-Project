@@ -1,13 +1,13 @@
 <html>
    <head></head>
-     <script src="https://d3js.org/d3.v4.min.js">
-     </script>
       <style>
         .axis .domain {
           display: none;
         }
       </style>
    <body>
+     <script src="https://d3js.org/d3.v4.min.js">
+     </script>
      <script type="text/javascript">
      </script>
       <svg width="1080" height="700"></svg>
@@ -32,7 +32,7 @@ var y = d3.scaleLinear()
 var z = d3.scaleOrdinal()
     .range(["#8a89a6", "#7b6888", "#6b486b"]);
 
-d3.csv("ntu_wrank_normal1.csv", function(d, i, columns) {
+d3.csv("ntu_wranknormal1.csv", function(d, i, columns) {
   for (var i = 0, n = columns.length; i < n; ++i) d[columns[i]] = +d[columns[i]];
   return d;
 }, function(error, data) {
