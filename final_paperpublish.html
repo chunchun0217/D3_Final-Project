@@ -26,8 +26,8 @@ path {
 <script>
 
 var	margin = {top: 30, right: 40, bottom: 30, left: 50},
-	width = 600 - margin.left - margin.right,
-	height = 270 - margin.top - margin.bottom;
+	width = 960 - margin.left - margin.right,
+	height = 500 - margin.top - margin.bottom;
 
 var	parseDate = d3.time.format("%d-%b-%y").parse;
 
@@ -100,10 +100,10 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.text("Society publish");
 
 console.log(data.length-1);
-console.log(data[data.length-1].open);
-console.log(data[0].open);
-console.log(y(data[0].open));
-console.log(y(data[0].close));
+console.log(data[data.length-1].Sicence);
+console.log(data[0].Science);
+console.log(y(data[0].Science));
+console.log(y(data[0].Society));
 
 });
 
