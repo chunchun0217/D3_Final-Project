@@ -119,7 +119,9 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("text-anchor", "start")
 		.style("fill", "red")
 		.text("Society");
-
+	
+	var lineSvg = svg.append("g");
+	
 	var focus = svg.append("g")
 		.style("display", "none");
 	
