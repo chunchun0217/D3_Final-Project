@@ -69,6 +69,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 
 	svg.append("path")		// Add the valueline path.
 		.attr("class", "line")
+		.style("stroke", "steelblue")
 		.attr("d", valueline(data));
 
 	svg.append("path")		// Add the valueline2 path.
@@ -89,19 +90,21 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
-		.style("fill", "red")
+		.style("fill", "steelblue")
 		.text("Science publish");
 
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
-		.style("fill", "steelblue")
+		.style("fill", "red")
 		.text("Society publish");
 
 console.log(data.length-1);
 console.log(data[data.length-1].Sicence);
 console.log(data[0].Science);
+console.log(data[data.length-1].Society);
+console.log(data[0].Society);
 console.log(y(data[0].Science));
 console.log(y(data[0].Society));
 
