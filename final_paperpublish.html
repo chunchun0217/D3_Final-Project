@@ -25,8 +25,8 @@ path {
 
 <script>
 
-var	margin = {top: 30, right: 40, bottom: 30, left: 50},
-	width = 960 - margin.left - margin.right,
+var	margin = {top: 30, right: 50, bottom: 30, left: 50},
+	width = 980 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
 var	parseDate = d3.time.format("%Y").parse;
@@ -58,14 +58,14 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = parseDate(d.Year);
-		d.Science = d.Science;
-		d.Society = d.Society;
+		d.date = d.Year;
+		d.Science = +d.Science;
+		d.Society = +d.Society;
 	});
 
 	// Scale the range of the data
-	x.domain(d3.extent(data, function(d) { return d.Year; }));
-	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science, d.Society); })]);
+	x.domain(1980, 2015));
+	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
 	svg.append("path")		// Add the valueline path.
 		.attr("class", "line")
@@ -91,9 +91,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
-		.text("Science publish");
-
-	svg.append("text")
+		.text("Science publish")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
@@ -103,8 +101,6 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 console.log(data.length-1);
 console.log(data[data.length-1].Sicence);
 console.log(data[0].Science);
-console.log(data[data.length-1].Society);
-console.log(data[0].Society);
 console.log(y(data[0].Science));
 console.log(y(data[0].Society));
 
