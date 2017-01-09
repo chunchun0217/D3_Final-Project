@@ -102,8 +102,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("y", 9)
-		.attr("dy", "0.7em")
+		.attr("y", 1)
+		.attr("dy", "0.71em")
 		.text("Paper publish amount");
 
 	svg.append("text")
@@ -120,11 +120,14 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("fill", "red")
 		.text("Society");
 
+	var focus = svg.append("g")
+		.style("display", "none");
+	
 	    // append the circle at the intersection               
 	focus.append("circle")                               
         .attr("class", "y")                                
         .style("fill", "none")                            
-        .style("stroke", "grey")                         
+        .style("stroke", "black")                         
         .attr("r", 4); 
 	    
     // append the rectangle to capture mouse             
