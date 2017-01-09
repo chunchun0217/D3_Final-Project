@@ -57,7 +57,6 @@ var	svg = d3.select("svg")
 
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
-	if (error) throw error;
 	data.forEach(function(d) {
 		d.Year = parseDate(d.Year);
 		d.Science = +d.Science;
