@@ -58,11 +58,11 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = parseDate(d.Year);
+		d.Year = parseDate(d.Year);
 	});
 
 	// Scale the range of the data
-	x.domain(d3.extent(data, function(d) {return d.date; }));
+	x.domain(d3.extent(data, function(d) { return d.Year; }));
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
 	svg.append("path")		// Add the valueline path.
