@@ -43,11 +43,11 @@ var	yAxis = d3.svg.axis().scale(y)
 var	valueline = d3.svg.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Science); });
-	
+/*	
 var	valueline2 = d3.svg.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Society); });
-  
+*/
 var	svg = d3.select("body")
 	.append("svg")
 		.attr("width", width + margin.left + margin.right)
@@ -70,11 +70,11 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("stroke", "steelblue")
 		.attr("d", valueline(data));
 
-	svg.append("path")		// Add the valueline2 path.
+/*	svg.append("path")		// Add the valueline2 path.
 		.attr("class", "line")
 		.style("stroke", "red")
 		.attr("d", valueline2(data));
-
+*/
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
@@ -90,9 +90,10 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
 		.text("Science publish");
-	svg.appernd("text")
+	
+	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
-		.attr("dy", ".35em")
+		.attr("dy", ".38em")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
 		.text("Society publish");
