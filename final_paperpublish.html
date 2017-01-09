@@ -64,7 +64,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	});
 
 	// Scale the range of the data
-	x.domain(1980, 2015));
+	x.domain(1980, 2015);
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
 	svg.append("path")		// Add the valueline path.
