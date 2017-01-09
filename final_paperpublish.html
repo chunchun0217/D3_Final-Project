@@ -43,12 +43,12 @@ var	yAxis = d3.svg.axis().scale(y)
 var	valueline = d3.svg.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Science); });
-/*	
+	
 var	valueline2 = d3.svg.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Society); });
-*/
-var	svg = d3.select("body")
+
+var	svg = d3.select("svg")
 	.append("svg")
 		.attr("width", width + margin.left + margin.right)
 		.attr("height", height + margin.top + margin.bottom)
@@ -57,8 +57,11 @@ var	svg = d3.select("body")
 
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
+	if (error) throw error;
 	data.forEach(function(d) {
 		d.Year = parseDate(d.Year);
+		d.Science = +d.Science;
+		d.Society = +d.Society;
 	});
 
 	// Scale the range of the data
@@ -70,11 +73,11 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("stroke", "steelblue")
 		.attr("d", valueline(data));
 
-/*	svg.append("path")		// Add the valueline2 path.
+	svg.append("path")		// Add the valueline2 path.
 		.attr("class", "line")
 		.style("stroke", "red")
 		.attr("d", valueline2(data));
-*/
+
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
