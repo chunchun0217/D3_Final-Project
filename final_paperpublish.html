@@ -58,7 +58,7 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = parseTime(d.Year);
+		d.date = parseDate(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
 	});
