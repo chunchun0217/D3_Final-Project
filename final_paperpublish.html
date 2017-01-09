@@ -39,6 +39,7 @@ var	margin = {top: 30, right: 50, bottom: 30, left: 50},
 	height = 500 - margin.top - margin.bottom;
 
 var	parseDate = d3.time.format("%Y").parse;
+var 	sectDate = d3.bisector(function(d) {return d.Year; }).left;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -119,11 +120,34 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("fill", "red")
 		.text("Society");
 
-console.log(data.length-1);
-console.log(data[data.length-1].Sicence);
-console.log(data[0].Science);
-console.log(y(data[0].Science));
-console.log(y(data[0].Society));
+	    // append the circle at the intersection               
+	focus.append("circle")                               
+        .attr("class", "y")                                
+        .style("fill", "none")                            
+        .style("stroke", "grey")                         
+        .attr("r", 4); 
+	    
+    // append the rectangle to capture mouse             
+    svg.append("rect")                                     
+        .attr("width", width)                            
+        .attr("height", height)                         
+        .style("fill", "none")                          
+        .style("pointer-events", "all")                 
+        .on("mouseover", function() { focus.style("display", null); })
+        .on("mouseout", function() { focus.style("display", "none"); })
+        .on("mousemove", mousemove);                     
+
+    function mousemove() {                               
+        var x0 = x.invert(d3.mouse(this)[0]),             
+            i = sectDate(data, x0, 1),                  
+            d0 = data[i - 1],                            
+            d1 = data[i],                               
+            d = x0 - d0.Year > d1.Year - x0 ? d1 : d0;   
+
+        focus.select("circle.y")                         
+            .attr("transform", "translate(" + x(d.Year) + "," + y(d.Science) + ")") 
+	    .attr("transform", "translate(" + x(d.Year) + "," + y(d.Society) + ")"); 
+    }                                                     
 
 });
 
