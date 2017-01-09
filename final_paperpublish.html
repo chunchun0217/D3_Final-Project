@@ -81,25 +81,29 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis);
+		.call(xAxis)
+		.append("text")
+		.attr("x", 6)
+		.attr("dx", "0.71en")
+		.text("Year");
 
 	svg.append("g")			// Add the Y Axis
 		.attr("class", "y axis")
-		.call(yAxis);
+		.call(yAxis)
 
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
-		.text("Science publish");
+		.text("Science");
 	
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
-		.attr("dy", ".38em")
+		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
-		.text("Society publish");
+		.text("Society");
 
 console.log(data.length-1);
 console.log(data[data.length-1].Sicence);
