@@ -58,13 +58,11 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = d.Year;
-		d.Science = +d.Science;
-		d.Society = +d.Society;
+		d.date = parseDate(d.Year);
 	});
 
 	// Scale the range of the data
-	x.domain(1980, 2015);
+	x.domain(d3.extent(data, function(d) {return d.date; }));
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
 	svg.append("path")		// Add the valueline path.
@@ -91,7 +89,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
-		.text("Science publish")
+		.text("Science publish");
+	svg.appernd("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
