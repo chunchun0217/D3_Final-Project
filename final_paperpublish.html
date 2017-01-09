@@ -18,6 +18,15 @@ path {
 	stroke-width: 1;
 	shape-rendering: crispEdges;
 }
+	.x.axis path {
+		display: none;
+	}
+	
+	.line {
+		fill: none;
+		stroke: steelblue;
+		stroke-width: 1.5px;
+	}
 
 </style>
 <body>
@@ -83,13 +92,18 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
 		.append("text")
-		.attr("x", 900)
+		.attr("x", 800)
 		.attr("dx", "0.70em")
 		.text("Year");
 
 	svg.append("g")			// Add the Y Axis
 		.attr("class", "y axis")
 		.call(yAxis)
+		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", 9)
+		.attr("dy", "0.7em")
+		.text("Paper publish amount");
 
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
