@@ -29,7 +29,7 @@ var	margin = {top: 30, right: 40, bottom: 30, left: 50},
 	width = 960 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
-var	parseDate = d3.time.format("%d-%b-%y").parse;
+var	parseDate = d3.time.format("%Y").parse;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -58,7 +58,7 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	data.forEach(function(d) {
-		d.date = d.Year;
+		d.date = parseTime(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
 	});
