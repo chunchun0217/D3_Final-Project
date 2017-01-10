@@ -90,6 +90,7 @@ text {
 }
 
 .x.axis path {
+	
 }
 
 </style>
@@ -143,15 +144,17 @@ d.forEach(function(d) {
 
 x0.domain(d.map(function(d) { return d.year; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
-y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
+y.domain([0, (d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })) -20 ]);
   
 svg.append("g")			// Add the X Axis
 	.attr("class", "x axis")
 	.attr("transform", "translate(0," + height + ")")
 	.call(xAxis)
 	.append("text")
+	.attr("x", 0)
+	.attr("y", -20)
 	.attr("dx", "0.71em")
-	.style("text-anchor", "middle")
+	.style("text-anchor", "end")
 	.text("Year");
 
 svg.append("g")
