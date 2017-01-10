@@ -146,16 +146,16 @@ svg.append('text')
           'text-anchor': "start",
           'font-size': "30px",
           'x': margin,
-	  'y': margin -25
+	  'y': -25
         }).text("2014 & 2015 NTU Evaluations' rank");
 	
 svg.append("g")			// Add the X Axis
 	.attr("class", "x axis")
-	.attr("transform", "translate(25," + height + ")")
+	.attr("transform", "translate(5," + height + ")")
 	.call(xAxis)
 	.append("text")
 	.attr("x", 650)
-	.attr("y", 25)
+	.attr("y", 20)
 	.attr("font-size", "15px")
 	.attr("font-weight", "bold")
 	.attr("dx", "0.71em")
