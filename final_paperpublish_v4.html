@@ -184,25 +184,17 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         	.style('stroke', 'black')
         	.style('stroke-width', '1.5px')
         	.style('stroke-dasharray', '3 3');
-	
-	function type(d) {
-		d.Year = d.Year;
-		console.log(d.Year);
-		d.Science = +d.Science;
-		d.Society = +d.Society;
-		return d;
-	}
-	
+		
 	function mousemove() {
       		const x0 = x.invert(d3.mouse(this)[0]);
-      		var i = bisect(data, x0, 0);
+      		var i = bisect(data, x0, 1);
       		const d0 = data[i - 1];
       		const d1 = data[i];
-      		const d = x0 - d0.Year > d1.Year - x0 ? d1 : d0;
-      		focus.attr('transform', `translate(${x(d.Year)}, ${y(d.value)})`);
+      		const d2 = x0 - (d0.Year) > (d1.Year) - x0 ? d1 : d0;
+      		focus.attr('transform', 'translate(${x(d2.Year)}, ${y(d2.value)})');
       		focus.select('line.x')
         		.attr('x1', 0)
-        		.attr('x2', -x(d.Year))
+        		.attr('x2', -x(d2.Year))
         		.attr('y1', 0)
         		.attr('y2', 0);
 
@@ -210,9 +202,9 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         		.attr('x1', 0)
         		.attr('x2', 0)
         		.attr('y1', 0)
-        		.attr('y2', height - y(d.value));
+        		.attr('y2', height - y(d2.value));
 
-      		focus.select('text').text(d.Year + ":  " + d.value);
+      		focus.select('text').text(d2.Year + ":  " + d2.value);
     }           
 });
 </script>
