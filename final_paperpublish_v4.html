@@ -187,10 +187,12 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		
 	function mousemove() {
       		const x0 = x.invert(d3.mouse(this)[0]);
+		console.log(x0);
       		var i = bisect(data, x0, 1);
       		const d0 = data[i - 1];
       		const d1 = data[i];
 		console.log(d0);
+		console.log(d0.Year);
 		console.log(d1);
       		const d2 = x0 - (d0.Year) > (d1.Year) - x0 ? d1 : d0;
       		focus.attr('transform', 'translate(${x(d2.Year)}, ${y(d2.value)})');
