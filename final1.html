@@ -110,7 +110,7 @@ var x0 = d3.scale.ordinal()
 var x1 = d3.scale.ordinal();
 
 var y = d3.scale.linear()
-    .range([0, height]);
+    .range([0, height - 3]);
 
 var colorRange = d3.scale.category20();
 var color = d3.scale.ordinal()
@@ -153,6 +153,8 @@ svg.append("g")			// Add the X Axis
 	.append("text")
 	.attr("x", 700)
 	.attr("y", 20)
+	.attr("font-size", "15px")
+	.attr("font-weight", "bold")
 	.attr("dx", "0.71em")
 	.style("text-anchor", "end")
 	.text("Year");
@@ -164,7 +166,9 @@ svg.append("g")
 svg.append("text")
     .attr("transform", "rotate(-90)")
 	.attr("x", -30)
-	.attr("y", -30)
+	.attr("y", -40)
+	.attr("font-size", "15px")
+	.attr("font-weight", "bold")
     .style("text-anchor", "end")
     .text("Rank");
 
@@ -194,7 +198,7 @@ bar
         l = elements.length
         l = l-1
         elementData = elements[l].__data__
-        divTooltip.html((d.year)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
+        divTooltip.html((d.year)+"<br>"+elementData.name+"<br>"+"Rank: :"+elementData.value);
     });
 bar
     .on("mouseout", function(d){
