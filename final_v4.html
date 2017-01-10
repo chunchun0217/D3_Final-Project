@@ -102,7 +102,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_cwur.csv", functi
     		d.valores = options.map(function(name) { return {name: name, value: +d[name]}; });
 	});
 	x0.domain(d.map(function(d) { return d.year; }));
-	x1.domain(options).range([0, x0.bandwidth()]);
+	x1 = d3.scaleBand().domain(options).rangeRound([0, x0.bandwidth()]);
 	y.domain([1, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
   
  	svg.append('text')
@@ -146,8 +146,8 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_cwur.csv", functi
 	bar.selectAll("rect")
     		.data(function(d) { return d.valores; })
     		.enter().append("rect")
-    		.attr("width", (x0.bandwidth()/10))
-    		.attr("x", function(d) { return x0(d.name); })
+    		.attr("width", x1.bandwidth())
+    		.attr("x", function(d) { return x1(d.name); })
     		.attr("y", function(d) { return y(d.value); })
     		.attr("value", function(d){return d.name;})
     		.attr("height", function(d) { return height - y(d.value); })
