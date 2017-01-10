@@ -102,7 +102,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_cwur.csv", functi
     		d.valores = options.map(function(name) { return {name: name, value: +d[name]}; });
 	});
 	x0.domain(d.map(function(d) { return d.year; }));
-	x1 = d3.scaleBand().domain(options).rangeRound([0, x0.bandwidth()]);
+	x1 = d3.scaleBand().domain(options).range([0, x0.bandwidth()]);
 	y.domain([1, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
   
  	svg.append('text')
