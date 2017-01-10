@@ -18,15 +18,42 @@ path {
 	stroke-width: 1;
 	shape-rendering: crispEdges;
 }
-	.x.axis path {
-		display: none;
-	}
 	
-	.line {
-		fill: none;
-		stroke: steelblue;
-		stroke-width: 1.5px;
-	}
+div {
+        padding: 15px;
+        width:800px;
+        margin-left:auto;
+        margin-right:auto;
+          border:10px ;
+}
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.focus circle {
+  fill: steelblue;
+  stroke: steelblue;
+}
+
+.line {
+  fill: none;
+  stroke: #aaa;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 1.5px;
+}
+
+.line-hover {
+  stroke: #e769ab ;
+  stroke-width:2;
+}
+
+.voronoi path {
+  fill: none;
+  pointer-events: all;
+}
 
 </style>
 <body>
@@ -38,8 +65,9 @@ var	margin = {top: 30, right: 50, bottom: 30, left: 50},
 	width = 980 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
-var	parseDate = d3.time.format("%Y").parse;
-var 	sectDate = d3.bisector(function(d) {return d.Year; }).left;
+var	parseDate = d3.time.format("%Y").parse,
+ 	sectDate = d3.bisector(function(d) {return d.Year; }).left,
+    	formatValue = d3.format",.2f");
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -49,6 +77,11 @@ var	xAxis = d3.svg.axis().scale(x)
 
 var	yAxis = d3.svg.axis().scale(y)
 	.orient("left").ticks(5);
+	
+var 	voronoi = d3.geom.voronoi()
+    .x(function(d) { return x(d.Year); })
+    .y(function(d) { return y(d.value); })
+    .clipExtent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
 
 var	valueline = d3.svg.line()
 	.x(function(d) { return x(d.Year); })
@@ -68,10 +101,14 @@ var	svg = d3.select("body")
 // Get the data
 d3.csv("ntu_paper_publish.csv", function(error, data) {
 	if (error) throw error;
+	
+	var flatData = [];
 	data.forEach(function(d) {
 		d.Year = parseDate(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
+		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
+		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
 	});
 
 	// Scale the range of the data
@@ -120,39 +157,28 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("fill", "red")
 		.text("Society");
 	
-	var lineSvg = svg.append("g");
-	
-	var focus = svg.append("g")
-		.style("display", "none");
-	
-	    // append the circle at the intersection               
-	focus.append("circle")                               
-        .attr("class", "y")                                
-        .style("fill", "none")                            
-        .style("stroke", "black")                         
-        .attr("r", 4); 
-	    
-    // append the rectangle to capture mouse             
-    svg.append("rect")                                     
-        .attr("width", width)                            
-        .attr("height", height)                         
-        .style("fill", "none")                          
-        .style("pointer-events", "all")                 
-        .on("mouseover", function() { focus.style("display", null); })
-        .on("mouseout", function() { focus.style("display", "none"); })
-        .on("mousemove", mousemove);                     
+    var voronoiGroup = svg.append("g")
+      .attr("class", "voronoi");
+      
+    voronoiGroup.selectAll("path")
+      .data(voronoi(flatData))
+      .enter().append("path")
+      .attr("d", function(d) { return "M" + d.join("L") + "Z"; })
+      .datum(function(d) { return d.point; })
+      .on("mouseover", mouseover)
+      .on("mouseout", mouseout);
 
-    function mousemove() {                               
-        var x0 = x.invert(d3.mouse(this)[0]),             
-            i = sectDate(data, x0, 1),                  
-            d0 = data[i - 1],                            
-            d1 = data[i],                               
-            d = x0 - d0.Year > d1.Year - x0 ? d1 : d0;   
-
-        focus.select("circle.y")                         
-            .attr("transform", "translate(" + x(d.Year) + "," + y(d.Science) + ")") 
-	    .attr("transform", "translate(" + x(d.Year) + "," + y(d.Society) + ")"); 
-    }                                                     
+  function mouseover(d) {
+      console.log(d);
+      d3.select("."+d.key).classed("line-hover", true);
+      focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
+      focus.select("text").text(d.Year);
+    }
+  
+    function mouseout(d) {
+      d3.select("."+d.key).classed("line-hover", false);
+      focus.attr("transform", "translate(-100,-100)");
+    }            
 
 });
 
