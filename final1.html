@@ -152,8 +152,8 @@ svg.append("g")
     .call(xAxis);
   
 svg.append("text")
-    .attr("x", height - 10)
-    .attr("y", width - margin)
+    .attr("x", width - margin)
+    .attr("y", 950)
     .style("text-anchor", "start")
     .text("Year");
 
@@ -163,6 +163,8 @@ svg.append("g")
   
 svg.append("text")
     .attr("transform", "rotate(-90)")
+	.attr("x", 20)
+	.attr("y", 30)
     .style("text-anchor", "end")
     .text("Rank");
 
