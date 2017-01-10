@@ -146,7 +146,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_cwur.csv", functi
 	bar.selectAll("rect")
     		.data(function(d) { return d.valores; })
     		.enter().append("rect")
-    		.attr("width", x1.bandwidth())
+    		.attr("width", x0.bandwidth())
     		.attr("x", function(d) { return x1(d.name); })
     		.attr("y", function(d) { return y(d.value); })
     		.attr("value", function(d){return d.name;})
