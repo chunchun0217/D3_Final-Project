@@ -57,6 +57,7 @@ div {
 
 </style>
 <body>
+	<div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
 
@@ -67,8 +68,7 @@ var	margin = {top: 30, right: 50, bottom: 30, left: 50},
 	height = 500 - margin.top - margin.bottom;
 
 var	parseDate = d3.time.format("%Y").parse,
- 	sectDate = d3.bisector(function(d) {return d.Year; }).left,
-    	formatValue = d3.format(",.2f");
+ 	sectDate = d3.bisector(function(d) {return d.Year; }).left;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -158,6 +158,17 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.style("fill", "red")
 		.text("Society");
 	
+var focus = svg.append("g")
+      .attr("class", "focus")
+      .attr("transform", "translate(-100,-100)");
+
+    focus.append("circle")
+      .attr("r", 4.5);
+
+    focus.append("text")
+      .attr("x", 9)
+      .attr("dy", ".35em");
+	
     var voronoiGroup = svg.append("g")
       .attr("class", "voronoi");
       
@@ -184,5 +195,6 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 });
 
 </script>
+	</div>
 </body>
 </html>
