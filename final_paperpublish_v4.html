@@ -92,11 +92,13 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.text("Paper publish of NTU");
 	
 	svg.append("path")		// Add the valueline path.
-		.attr("class", "line Science")
+		.data([data])
+		.attr("class", "line")
 		.style("stroke", "steelblue")
 		.attr("d", valueline(data));
 	svg.append("path")		// Add the valueline2 path.
-		.attr("class", "line Society")
+		.data([data])
+		.attr("class", "line")
 		.style("stroke", "red")
 		.attr("d", valueline2(data));
 	svg.append("g")			// Add the X Axis
