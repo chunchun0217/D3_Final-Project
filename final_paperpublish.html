@@ -90,7 +90,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	
 	var flatData = [];
 	data.forEach(function(d) {
-		d.Year = parseDate(d.Year);
+		d.Year = +d.Year;
 		d.Science = +d.Science;
 		d.Society = +d.Society;
 		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
@@ -196,7 +196,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
       		console.log(d);
       		d3.select("."+d.key).classed("line-hover", true);
       		focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      		focus.select("text").text( d.Year.toString() + ":  " + d.value);
+      		focus.select("text").text( d.Year + ":  " + d.value);
     	}
   
     	function mouseout(d) {
