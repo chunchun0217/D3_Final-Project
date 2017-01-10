@@ -6,8 +6,8 @@
 body { font: 12px Arial;}
 
 path { 
-	stroke: steelblue;
-	stroke-width: 2;
+	stroke: ;
+	stroke-width: ;
 	fill: none;
 }
 
@@ -15,7 +15,7 @@ path {
 .axis line {
 	fill: none;
 	stroke: grey;
-	stroke-width: 1;
+	stroke-width: 2;
 	shape-rendering: crispEdges;
 }
 	
@@ -35,14 +35,16 @@ div {
 .focus circle {
   fill: grey;
   stroke: grey;
+	}
+
+.line {
+  fill: steelblue;
+  stroke: #aaa;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  stroke-width: 1.5px;
 }
-
-
-.line-hover {
-  stroke: #e769ab ;
-  stroke-width:2;
-}
-
+	
 .voronoi path {
   fill: none;
   pointer-events: all;
@@ -156,10 +158,10 @@ var focus = svg.append("g")
       .attr("transform", "translate(-100,-100)");
 
     focus.append("circle")
-      .attr("r", 4.5);
+      .attr("r", 5);
 
     focus.append("text")
-      .attr("x", 9)
+      .attr("x", 8)
       .attr("dy", ".35em");
 	
     var voronoiGroup = svg.append("g")
