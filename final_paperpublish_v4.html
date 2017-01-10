@@ -42,7 +42,7 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 //var	parseDate = d3.time.format("%Y").parse;
-var	x = d3.scaleTime().range([0, width]);
+var	x = d3.scaleLinear().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
 var	xAxis = d3.axisBottom(x)
 	.ticks(5);
@@ -122,12 +122,13 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	
 	svg.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -27)
+		.attr("x", -40)
 		.attr("y", -40)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
 		.style("text-anchor", "start")
 		.text("Paper publish amount");
+	
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
 		.attr("dy", ".35em")
