@@ -82,7 +82,7 @@ var 	x0 = d3.scaleBand()
 var 	x1 = d3.scaleOrdinal();
 var 	y = d3.scaleLinear()
     	.range([0, height - 3]);
-var 	colorRange = d3.scale.category20();
+var 	colorRange = d3.scaleOrdinal(d3.schemeCategory20);
 var 	color = d3.scaleOrdinal()
     	.range(colorRange.range());
 var 	xAxis = d3.svg.axis()
