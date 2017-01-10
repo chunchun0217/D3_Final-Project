@@ -40,7 +40,7 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 //var	parseDate = d3.time.format("%Y").parse;
-var	x = d3.scaleLinear().range([0, width]);
+var	x = d3.scaleTime().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
 var	xAxis = d3.axisBottom(x)
 	.ticks(5);
@@ -72,13 +72,16 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	var flatData = [];
 	data.forEach(function(d) {
 		d.Year = d.Year;
-		d.Science = d.Science;
-		d.Society = d.Society;
+		console.log(d.Year);
+		d.Science = +d.Science;
+		d.Society = +d.Society;
 		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
 		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
 	});
 	// Scale the range of the data
-	x.domain([d3.max(data, function(d) { return Math.max(d.Year); }), 0]);
+	x.domain(d3.extent(data, function(d) { return d.Year; }));
+	console.log(d3.extent(data, function(d) { return d.Year; }));
+	console.log(data);
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
  	svg.append('text')
         	.attr("class", "axis")
@@ -89,13 +92,15 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.text("Paper publish of NTU");
 	
 	svg.append("path")		// Add the valueline path.
+		.data(data)
 		.attr("class", "line")
 		.style("stroke", "steelblue")
-		.attr("d", valueline[data]);
+		.attr("d", valueline(data));
 	svg.append("path")		// Add the valueline2 path.
+		.data(data)
 		.attr("class", "line")
 		.style("stroke", "red")
-		.attr("d", valueline2[data]);
+		.attr("d", valueline2(data));
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
 		.attr("transform", "translate(0," + height + ")")
