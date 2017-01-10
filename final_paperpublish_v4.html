@@ -185,6 +185,14 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         	.style('stroke-width', '1.5px')
         	.style('stroke-dasharray', '3 3');
 	
+	function type(d) {
+		d.Year = d.Year;
+		console.log(d.Year);
+		d.Science = +d.Science;
+		d.Society = +d.Society;
+		return d;
+	}
+	
 	function mousemove() {
       		const x0 = x.invert(d3.mouse(this)[0]);
       		const i = bisectDate(data, x0, 1);
@@ -204,7 +212,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         		.attr('y1', 0)
         		.attr('y2', height - y(d.value));
 
-      		focus.select('text').text(formatCurrency(d.value));
+      		focus.select('text').text(d.Year + ":  " + d.value));
     }           
 });
 </script>
