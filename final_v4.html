@@ -118,13 +118,13 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_cwur.csv", functi
 		.attr("transform", "translate(5," + height + ")")
 		.call(xAxis)
 		.append("text")
-		.attr("x", 500)
-		.attr("y", 20)
+		.attr("x", 0)
+		.attr("y", 10)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
-		.attr("dx", "0.71em")
 		.style("text-anchor", "end")
 		.text("Year");
+	
 	svg.append("g")
     		.attr("class", "y axis")
 		.attr("transform", "translate(" + margin + ",0)")
