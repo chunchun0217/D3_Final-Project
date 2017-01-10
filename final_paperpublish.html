@@ -136,8 +136,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -30)
-		.attr("y", -10)
+		.attr("x", -45)
+		.attr("y", -30)
 		.attr("dy", "0.71em")
 		.style("text-anchor", "middle")
 		.text("Paper publish amount");
@@ -182,7 +182,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.Year + ":   " + d.value);
+      focus.select("text").text(d.value);
     }
   
     function mouseout(d) {
