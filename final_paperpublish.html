@@ -180,8 +180,8 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.Year);
-	focus.select("text").text(d.value);
+      focus.select("text").text(d.Year + "," + d.value);
+//	focus.select("text").text(d.value);
     }
   
     function mouseout(d) {
