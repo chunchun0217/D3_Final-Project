@@ -141,7 +141,7 @@ d.forEach(function(d) {
     d.valores = options.map(function(name) { return {name: name, value: +d[name]}; });
 });
 
-x0.domain(dataset.map(function(d) { return d.year; }));
+x0.domain(d.map(function(d) { return d.year; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
 y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
   
