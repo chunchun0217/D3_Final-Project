@@ -84,17 +84,15 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         	.attr("class", "axis")
         	.attr("text-anchor", "start")
             	.attr("font-size", "28px")
-            	.attr("x", margin)
+            	.attr("x", margin.left)
             	.attr("y", -25)
 		.text("Paper publish of NTU");
 	
 	svg.append("path")		// Add the valueline path.
-		.data([data])
 		.attr("class", "line")
 		.style("stroke", "steelblue")
 		.attr("d", valueline[data]);
 	svg.append("path")		// Add the valueline2 path.
-		.data([data])
 		.attr("class", "line")
 		.style("stroke", "red")
 		.attr("d", valueline2[data]);
