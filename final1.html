@@ -118,7 +118,7 @@ var color = d3.scale.ordinal()
 
 var xAxis = d3.svg.axis()
     .scale(x0)
-    .orient("bottom")
+    .orient("top")
 
 var yAxis = d3.svg.axis()
     .scale(y)
@@ -148,7 +148,7 @@ y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { retu
   
 svg.append("g")
     .attr("class", "x axis")
-		.attr("transform", "translate(" + height + ", 0 )")
+	.attr("transform", "translate(" + height + ", 0 )")
     .call(xAxis);
   
 svg.append("text")
@@ -210,7 +210,7 @@ var legend = svg.selectAll(".legend")
 
 legend.append("rect")
     .attr("x", width + 30)
-    .attr("y", -10)
+    .attr("y", -35)
     .attr("width", 18)
     .attr("height", 18)
     .style("fill", color);
