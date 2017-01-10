@@ -51,7 +51,7 @@ var	xAxis = d3.axisBottom(x)
 var	yAxis = d3.axisLeft(y)
 	.ticks(5);
 	
-var 	voronoi = d3.geom.voronoi()
+var 	voronoi = d3.voronoi()
     	.x(function(d) { return x(d.Year); })
     	.y(function(d) { return y(d.value); })
     	.clipExtent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
