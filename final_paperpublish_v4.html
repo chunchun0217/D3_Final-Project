@@ -85,14 +85,11 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
  	svg.append('text')
         	.attr("class", "axis")
-        	.attr({
-            	'fill': '#000',
-            	'font-family': "sans-serif",
-            	'text-anchor': "start",
-            	'font-size': "28px",
-            	'x': margin,
-            	'y': -25
-        	}).text("Paper publish of NTU");
+        	.attr("text-anchor", "start")
+            	.attr("font-size", "28px")
+            	.attr("x", margin)
+            	.attr("y", -25)
+		.text("Paper publish of NTU");
 	
 	svg.append("path")		// Add the valueline path.
 		.attr("class", "line Science")
