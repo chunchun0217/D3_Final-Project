@@ -40,7 +40,7 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 //var	parseDate = d3.time.format("%Y").parse;
-var	x = d3.scaleLine().range([0, width]);
+var	x = d3.scaleLinear().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
 var	xAxis = d3.axisBottom(x)
 	.ticks(5);
@@ -120,7 +120,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.style("text-anchor", "start")
 		.text("Paper publish amount");
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[36].Science) + ")")
+		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
@@ -129,7 +129,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.text("Science");
 	
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[36].Society) + ")")
+		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
 		.attr("font-size", "12px")
