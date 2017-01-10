@@ -116,12 +116,12 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
 	svg.append("path")		// Add the valueline path.
-		.attr("class", "line")
+		.attr("class", "line Science")
 		.style("stroke", "steelblue")
 		.attr("d", valueline(data));
 
 	svg.append("path")		// Add the valueline2 path.
-		.attr("class", "line")
+		.attr("class", "line Society")
 		.style("stroke", "red")
 		.attr("d", valueline2(data));
 
