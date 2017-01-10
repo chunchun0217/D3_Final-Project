@@ -110,6 +110,18 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	x.domain(d3.extent(data, function(d) { return d.Year; }));
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 
+ 	svg.append('text')
+        	.attr("class", "axis")
+        	.attr({
+            	'fill': '#000',
+            	'font-family': "sans-serif",
+            	'text-anchor': "start",
+            	'font-size': "30px",
+            	'x': 2 * margin,
+            	'y': margin
+        	}).text("Paper publish of NTU");
+
+	
 	svg.append("path")		// Add the valueline path.
 		.attr("class", "line Science")
 		.style("stroke", "steelblue")
@@ -127,6 +139,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.append("text")
 		.attr("x", 850)
 		.attr("y", height - 10)
+		.attr("font-size", "15px")
+		.attr("font-weight", "bold")
 		.attr("dx", "0.71em")
 		.style("text-anchor", "middle")
 		.text("Year");
@@ -136,8 +150,10 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -45)
-		.attr("y", -30)
+		.attr("x", -42)
+		.attr("y", -50)
+		.attr("font-size", "15px")
+		.attr("font-weight", "bold")
 		.attr("dy", "0.71em")
 		.style("text-anchor", "middle")
 		.text("Paper publish amount");
@@ -147,6 +163,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
+		.attr("font-size", "12px")
+		.attr("font-weight", "bold")
 		.text("Science");
 	
 	svg.append("text")
@@ -154,6 +172,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
+		.attr("font-size", "12px")
+		.attr("font-weight", "bold")
 		.text("Society");
 	
 var focus = svg.append("g")
@@ -164,8 +184,10 @@ var focus = svg.append("g")
       .attr("r", 5);
 
     focus.append("text")
-      .attr("x", 8)
-      .attr("dy", ".35em");
+     		.attr("x", 8)
+		.attr("font-size", "14px")
+		.attr("font-weight", "bold")
+      		.attr("dy", ".35em");
 	
     var voronoiGroup = svg.append("g")
       .attr("class", "voronoi");
