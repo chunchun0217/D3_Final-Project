@@ -86,9 +86,7 @@ var 	colorRange = d3.scaleOrdinal(d3.schemeCategory20);
 var 	color = d3.scaleOrdinal()
     	.range(colorRange.range());
 var 	xAxis = d3.axisBottom(x0)
-    	.orient("bottom")
-var 	yAxis = d3.axisBottom(y)
-    	.orient("left")
+var 	yAxis = d3.axisLeft(y)
     	.tickFormat(d3.format(".2s"));
 var 	divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 var 	svg = d3.select("body").append("svg")
