@@ -71,19 +71,19 @@ rect {
 </style>
 <body>
 
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
 <script>
 var 	margin = {top: 50, right: 50, bottom: 30, left: 70},
     	width = parseInt(d3.select('body').style('width'), 10) - margin.left - margin.right,
     	height = parseInt(d3.select('body').style('height'), 10) - margin.top - margin.bottom,
     	padding = height + 300;
-var 	x0 = d3.scale.ordinal()
+var 	x0 = d3.scaleOrdinal()
     	.rangeRoundBands([0, width], .1);
-var 	x1 = d3.scale.ordinal();
-var 	y = d3.scale.linear()
+var 	x1 = d3.scaleOrdinal();
+var 	y = d3.scaleLinear()
     	.range([0, height - 3]);
 var 	colorRange = d3.scale.category20();
-var 	color = d3.scale.ordinal()
+var 	color = d3.scaleOrdinal()
     	.range(colorRange.range());
 var 	xAxis = d3.svg.axis()
     	.scale(x0)
