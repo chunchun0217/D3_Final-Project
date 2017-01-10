@@ -148,12 +148,13 @@ y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { retu
   
 svg.append("g")
     .attr("class", "x axis")
+		.attr("transform", "translate(" + height + ", 0 )")
     .call(xAxis);
   
 svg.append("text")
     .attr("x", height - 10)
     .attr("y", width - margin)
-    .style("text-anchor", "end")
+    .style("text-anchor", "start")
     .text("Year");
 
 svg.append("g")
@@ -162,8 +163,7 @@ svg.append("g")
   
 svg.append("text")
     .attr("transform", "rotate(-90)")
-    .attr("x", height)
-    .style("text-anchor", "middle")
+    .style("text-anchor", "end")
     .text("Rank");
 
 var bar = svg.selectAll(".bar")
