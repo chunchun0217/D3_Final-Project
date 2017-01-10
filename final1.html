@@ -148,7 +148,6 @@ y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { retu
   
 svg.append("g")			// Add the X Axis
 	.attr("class", "x axis")
-	.attr("transform", "translate(" + height + ", 0)")
 	.call(xAxis)
 	.append("text")
 	.attr("x", 0)
@@ -162,7 +161,7 @@ svg.append("g")
   
 svg.append("text")
     .attr("transform", "rotate(-90)")
-	.attr("x", -70)
+	.attr("x", -60)
 	.attr("y", -30)
     .style("text-anchor", "end")
     .text("Rank");
