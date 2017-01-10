@@ -144,14 +144,14 @@ d.forEach(function(d) {
 
 x0.domain(d.map(function(d) { return d.year; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
-y.domain([0, (d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })) -20 ]);
+y.domain([1, (d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })) + 20 ]);
   
 svg.append("g")			// Add the X Axis
 	.attr("class", "x axis")
 	.attr("transform", "translate(0," + height + ")")
 	.call(xAxis)
 	.append("text")
-	.attr("x", 750)
+	.attr("x", 700)
 	.attr("y", 20)
 	.attr("dx", "0.71em")
 	.style("text-anchor", "end")
@@ -163,7 +163,7 @@ svg.append("g")
   
 svg.append("text")
     .attr("transform", "rotate(-90)")
-	.attr("x", -60)
+	.attr("x", -30)
 	.attr("y", -30)
     .style("text-anchor", "end")
     .text("Rank");
