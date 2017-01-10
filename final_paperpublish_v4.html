@@ -42,7 +42,7 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 var	bisectDate = d3.bisector(d => d.Year).left;
-//var	parseDate = d3.time.format("%Y").parse;
+var	parseDate = d3.timeParse("%Y");
 var	x = d3.scaleLinear().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
 var	xAxis = d3.axisBottom(x)
@@ -186,7 +186,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         	.style('stroke-dasharray', '3 3');
 	
 	function type(d) {
-		d.Year = d.Year;
+		d.Year = parseTime(d.Year);
 		console.log(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
@@ -212,7 +212,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
         		.attr('y1', 0)
         		.attr('y2', height - y(d.value));
 
-      		focus.select('text').text(d.Year + ":  " + d.value));
+      		focus.select('text').text(d.Year + ":  " + d.value);
     }           
 });
 </script>
