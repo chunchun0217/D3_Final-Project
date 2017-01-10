@@ -33,17 +33,10 @@ div {
 }
 
 .focus circle {
-  fill: steelblue;
-  stroke: steelblue;
+  fill: grey;
+  stroke: grey;
 }
 
-.line {
-  fill: none;
-  stroke: #aaa;
-  stroke-linejoin: round;
-  stroke-linecap: round;
-  stroke-width: 1.5px;
-}
 
 .line-hover {
   stroke: #e769ab ;
@@ -184,7 +177,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.Year);
+      focus.select("text").text(d.Year).text(d.value);
     }
   
     function mouseout(d) {
