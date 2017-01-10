@@ -59,10 +59,10 @@ div {
 <script>
 
 var	margin = {top: 30, right: 50, bottom: 30, left: 50},
-	width = 980 - margin.left - margin.right,
+	width = 800 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
-var	parseDate = d3.time.format("%Y").parse;
+var	parseDate = d3.time.format("%y").parse;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -127,6 +127,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.append("text")
 		.attr("x", 850)
 		.attr("dx", "0.71em")
+		.style("text-anchor", "middle")
 		.text("Year");
 
 	svg.append("g")			// Add the Y Axis
@@ -136,7 +137,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("transform", "rotate(-90)")
 		.attr("y", 2)
 		.attr("dy", "0.71em")
-		.style("text-anchor", "end")
+		.style("text-anchor", "middle")
 		.text("Paper publish amount");
 
 	svg.append("text")
@@ -179,7 +180,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.value);
+      focus.select("text").text(d.Year + ":   " + d.value);
     }
   
     function mouseout(d) {
