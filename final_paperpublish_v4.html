@@ -106,7 +106,6 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("y", 20)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
-		.attr("dx", "0.71em")
 		.style("text-anchor", "middle")
 		.text("Year");
 	svg.append("g")			// Add the Y Axis
@@ -115,11 +114,10 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -80)
-		.attr("y", -60)
+		.attr("x", 0)
+		.attr("y", 0)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
-		.attr("dy", "0.71em")
 		.style("text-anchor", "middle")
 		.text("Paper publish amount");
 	svg.append("text")
