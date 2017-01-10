@@ -117,8 +117,9 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	svg.append("g")			// Add the Y Axis
 		.attr("class", "y axis")
 		.attr("transform", "translate(-5,0)")
-		.call(yAxis)
-		.append("text")
+		.call(yAxis);
+	
+	svg.append("text")
 		.attr("transform", "rotate(-90)")
 		.attr("x", -27)
 		.attr("y", -40)
