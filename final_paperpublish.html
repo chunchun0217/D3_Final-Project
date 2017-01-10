@@ -102,8 +102,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		d.Year = parseDate(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
-		flatData.push({Year: parseDate(d.Year), value: d.Science, key:"Science"});
-		flatData.push({Year: parseDate(d.Year), value: d.Society, key:"Society"});
+		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
+		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
 	});
 
 	// Scale the range of the data
@@ -179,8 +179,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.Year + " :    " + d.value);
-//	focus.select("text").text(d.value);
+      focus.select("text").text(d.value);
     }
   
     function mouseout(d) {
