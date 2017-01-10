@@ -58,6 +58,7 @@ var	valueline = d3.line()
 var	valueline2 = d3.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Society); });
+	
 var	svg = d3.select("body")
 	.append("svg")
 	.attr("width", width + margin.left + margin.right)
@@ -95,7 +96,6 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 	svg.append("path")		// Add the valueline2 path.
 		.data([data])
 		.attr("class", "line")
-		.style("stroke", "red")
 		.attr("d", valueline2);
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
