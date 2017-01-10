@@ -41,6 +41,7 @@ body { font: 12px Arial;}
 var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
+var	bisectDate = d3.bisector(d => d.Year).left;
 //var	parseDate = d3.time.format("%Y").parse;
 var	x = d3.scaleLinear().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
@@ -131,7 +132,6 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	
 	svg.append("text")
 		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
-		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
 		.attr("font-size", "12px")
@@ -167,11 +167,6 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
       		.on("mouseover", () => focus.style("display", null))
       		.on("mouseout", () => focus.style("display", "none"))
       		.on("mousemove", mousemove);
-
-    	d3.selectAll('.line')
-      		.style("fill", "none")
-        	.style("stroke", "steelblue")
-        	.style("stroke-width", "1.5px");
 
     	d3.select('.overlay')
       		.style('fill', 'none')
