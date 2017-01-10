@@ -63,7 +63,6 @@ var	margin = {top: 30, right: 50, bottom: 30, left: 50},
 	height = 500 - margin.top - margin.bottom;
 
 var	parseDate = d3.time.format("%Y").parse,
- 	sectDate = d3.bisector(function(d) {return d.Year; }).left;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -180,7 +179,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.Year + "," + d.value);
+      focus.select("text").text(d.Year + " :    " + d.value);
 //	focus.select("text").text(d.value);
     }
   
