@@ -53,7 +53,7 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
 
-var	parseDate = d3.time.format("%Y").parse;
+var	parseDate = d3.time.format("-%Y").parse;
 
 var	x = d3.time.scale().range([0, width]);
 var	y = d3.scale.linear().range([height, 0]);
@@ -196,7 +196,7 @@ var focus = svg.append("g")
       console.log(d);
       d3.select("."+d.key).classed("line-hover", true);
       focus.attr("transform", "translate(" + x(d.Year) + "," + y(d.value) + ")");
-      focus.select("text").text(d.value);
+      focus.select("text").text( x(d.Year) + ":  " + d.value);
     }
   
     function mouseout(d) {
