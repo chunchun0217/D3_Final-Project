@@ -132,19 +132,18 @@ var svg = d3.select("body").append("svg")
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-  d3.csv("cwurData.csv", function(error, data){
-    csv = csv.filter(function(row){
-      return row['institution'] == 'National Taiwan University';
-    })
-    var options = d3.keys(data[0]).filter(function(key) { return key !== "institution"; });
-    data.forEach(function(d) {
-    d.valores = options.map(function(institution) { return {institution: data.institution, value: +d[institution]}; });
+d3.csv("ntu_cwur.csv", function(d) {
+ 
+ var options = d3.keys(d[0]).filter(function(key) { return key !== "year"; });
+
+d.forEach(function(d) {
+    d.valores = options.map(function(name) { return {name: name, value: +d[name]}; });
 });
 
-x0.domain(data.map(function(d) { return d.institution; }));
+x0.domain(dataset.map(function(d) { return d.year; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
-y.domain([0, d3.max(data, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
-
+y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
+  
 svg.append("g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + height + ")")
@@ -161,20 +160,20 @@ svg.append("g")
     .text("Rank");
 
 var bar = svg.selectAll(".bar")
-    .data(data)
+    .data(keys)
     .enter().append("g")
     .attr("class", "rect")
-    .attr("transform", function(d) { return "translate(" + x0(d.institution) + ",0)"; });
+    .attr("transform", function(d) { return "translate(" + x0(d.year) + ",0)"; });
 
 bar.selectAll("rect")
     .data(function(d) { return d.valores; })
     .enter().append("rect")
     .attr("width", x1.rangeBand())
-    .attr("x", function(d) { return x1(d.institution); })
+    .attr("x", function(d) { return x1(d.name); })
     .attr("y", function(d) { return y(d.value); })
-    .attr("value", function(d){return d.institution;})
+    .attr("value", function(d){return d.name;})
     .attr("height", function(d) { return height - y(d.value); })
-    .style("fill", function(d) { return color(d.institution); });
+    .style("fill", function(d) { return color(d.name); });
 
 bar
     .on("mousemove", function(d){
@@ -186,7 +185,7 @@ bar
         l = elements.length
         l = l-1
         elementData = elements[l].__data__
-        divTooltip.html((d.institution)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
+        divTooltip.html((d.year)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
     });
 bar
     .on("mouseout", function(d){
@@ -206,7 +205,15 @@ legend.append("rect")
     .attr("height", 18)
     .style("fill", color);
 
+legend.append("text")
+    .attr("x", width - 24)
+    .attr("y", 9)
+    .attr("dy", ".35em")
+    .style("text-anchor", "end")
+    .text(function(d) { return d; });
     
+});
+  
 </script>
 </body>
 </html>
