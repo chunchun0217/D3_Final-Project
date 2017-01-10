@@ -48,7 +48,7 @@ var	yAxis = d3.axisLeft(y)
 	.ticks(5);
 	
 var 	voronoi = d3.voronoi()
-    	.x(function(d) { return x(d.date); })
+    	.x(function(d) { return x(d.Year); })
     	.y(function(d) { return y(d.value); })
     	.extent([[(-margin.left), (-margin.top)], [(width + margin.right), (height + margin.bottom)]]);
 var	valueline = d3.line()
@@ -74,8 +74,8 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		d.Year = d.Year;
 		d.Science = d.Science;
 		d.Society = d.Society;
-		flatData.push({date: d.Year, value: d.Science, key:"Science"});
-		flatData.push({date: d.Year, value: d.Society, key:"Society"});
+		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
+		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
 	});
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.Year; }));
@@ -98,7 +98,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.attr("d", valueline2[data]);
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
-		.attr("transform", "translate(" + margin.left + "," + height + ")")
+		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
 		.append("text")
 		.attr("x", 650 )
@@ -109,18 +109,18 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.text("Year");
 	svg.append("g")			// Add the Y Axis
 		.attr("class", "y axis")
-		.attr("transform", "translate(" + margin.left + ",0)")
+		.attr("transform", "translate(-5,0)")
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", margin.left)
-		.attr("y", margin.top)
+		.attr("x", -27)
+		.attr("y", -40)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
 		.style("text-anchor", "start")
 		.text("Paper publish amount");
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
+		.attr("transform", "translate(" + (width+3) + "," + y(data[37].Science) + ")")
 		.attr("dy", ".35em")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
@@ -129,8 +129,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.text("Science");
 	
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
-		.attr("dy", ".35em")
+		.attr("transform", "translate(" + (width+3) + "," + y(data[37].Society) + ")")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
 		.attr("font-size", "12px")
