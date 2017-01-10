@@ -48,7 +48,7 @@ var	yAxis = d3.axisLeft(y)
 	.ticks(5);
 	
 var 	voronoi = d3.voronoi()
-    	.x(function(d) { return x(d.Year); })
+    	.x(function(d) { return x(d.date); })
     	.y(function(d) { return y(d.value); })
     	.extent([[(-margin.left), (-margin.top)], [(width + margin.right), (height + margin.bottom)]]);
 var	valueline = d3.line()
