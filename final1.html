@@ -161,7 +161,7 @@ svg.append("g")
     .text("Rank");
 
 var bar = svg.selectAll(".bar")
-    .data(keys)
+    .data(d)
     .enter().append("g")
     .attr("class", "rect")
     .attr("transform", function(d) { return "translate(" + x0(d.year) + ",0)"; });
