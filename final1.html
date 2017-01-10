@@ -148,7 +148,6 @@ y.domain([0, d3.max(d, function(d) { return d3.max(d.valores, function(d) { retu
   
 svg.append("g")
     .attr("class", "x axis")
-    .attr("transform", "translate(0," + height + ")")
     .call(xAxis)
     .append("text")
     .attr("dx", ".71em")
