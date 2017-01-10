@@ -74,8 +74,8 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		d.Year = d.Year;
 		d.Science = d.Science;
 		d.Society = d.Society;
-		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
-		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
+		flatData.push({date: d.Year, value: d.Science, key:"Science"});
+		flatData.push({date: d.Year, value: d.Society, key:"Society"});
 	});
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.Year; }));
@@ -98,7 +98,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		.attr("d", valueline2[data]);
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(" + margin.left + "," + height + ")")
 		.call(xAxis)
 		.append("text")
 		.attr("x", 650 )
