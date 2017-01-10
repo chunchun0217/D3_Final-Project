@@ -146,6 +146,17 @@ x0.domain(d.map(function(d) { return d.year; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
 y.domain([1, d3.max(d, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
   
+	 	svg.append('text')
+        	.attr("class", "axis")
+        	.attr({
+            	'fill': '#000',
+            	'font-family': "sans-serif",
+            	'text-anchor': "start",
+            	'font-size': "30px",
+            	'x': 0,
+            	'y': 0
+        	}).text("2014 & 2015 NTU Evaluations' rank");
+	
 svg.append("g")			// Add the X Axis
 	.attr("class", "x axis")
 	.attr("transform", "translate(0," + height + ")")
@@ -166,7 +177,7 @@ svg.append("g")
 svg.append("text")
     .attr("transform", "rotate(-90)")
 	.attr("x", -30)
-	.attr("y", -40)
+	.attr("y", -20)
 	.attr("font-size", "15px")
 	.attr("font-weight", "bold")
     .style("text-anchor", "end")
