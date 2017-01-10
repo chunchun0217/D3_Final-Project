@@ -146,7 +146,7 @@ d3.csv("ntu_cwur.csv", function(error, d) {
 	bar.selectAll("rect")
     		.data(function(d) { return d.valores; })
     		.enter().append("rect")
-    		.attr("width", x1.bandwidth())
+    		.attr('width', x1.bandwidth())
     		.attr("x", function(d) { return x1(d.name); })
     		.attr("y", function(d) { return y(d.value); })
     		.attr("value", function(d){return d.name;})
