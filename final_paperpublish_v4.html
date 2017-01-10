@@ -54,7 +54,7 @@ var	yAxis = d3.axisLeft(y)
 var 	voronoi = d3.voronoi()
     	.x(function(d) { return x(d.Year); })
     	.y(function(d) { return y(d.value); })
-    	.clipExtent([[margin.left, margin.top], [(width + margin.right), (height + margin.bottom)]]);
+    	.extent([[(-margin.left), (-margin.top)], [(width + margin.right), (height + margin.bottom)]]);
 var	valueline = d3.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Science); });
