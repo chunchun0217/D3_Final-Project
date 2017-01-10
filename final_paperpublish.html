@@ -117,8 +117,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
             	'font-family': "sans-serif",
             	'text-anchor': "start",
             	'font-size': "30px",
-            	'x': margin,
-            	'y': margin
+            	'x': 0,
+            	'y': 0
         	}).text("Paper publish of NTU");
 
 	
@@ -137,7 +137,7 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
 		.append("text")
-		.attr("x", 850)
+		.attr("x", 700)
 		.attr("y", height - 10)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
@@ -150,8 +150,8 @@ d3.csv("ntu_paper_publish.csv", function(error, data) {
 		.call(yAxis)
 		.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -42)
-		.attr("y", -50)
+		.attr("x", -35)
+		.attr("y", -70)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
 		.attr("dy", "0.71em")
