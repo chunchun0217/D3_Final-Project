@@ -46,9 +46,9 @@ var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 //var	parseDate = d3.time.format("%Y").parse;
 var	x = d3.scaleBand().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
-var	xAxis = axisBottom(x)
+var	xAxis = d3.axisBottom(x)
 	.ticks(5);
-var	yAxis = axisLeft(y)
+var	yAxis = d3.axisLeft(y)
 	.ticks(5);
 	
 var 	voronoi = d3.geom.voronoi()
