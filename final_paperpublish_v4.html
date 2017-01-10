@@ -41,7 +41,7 @@ body { font: 12px Arial;}
 var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
-var	bisect = d3.bisector(function(d) { return d.Year; }).left;
+var	bisectX = d3.bisectLeft(function(d) { return d.Year; });
 var	parseDate = d3.timeParse("%Y");
 var	x = d3.scaleLinear().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
@@ -188,9 +188,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	function mousemove() {
       		const x0 = x.invert(d3.mouse(this)[0]);
 		console.log(x0);
-		x0 = parseDate(x0);
-		console.log(x0);
-/*      		var i = bisect(data, x0, 1);
+     		var i = bisect(data, x0, 1);
 		console.log(i)
       		const d0 = data[i - 1];
 		d0.Year = parseTime(d0.Year);
@@ -199,7 +197,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		console.log(d0);
 		console.log(d0.Year);
 		console.log(d1);
-      		const d2 = x0 - (d0.Year) > (d1.Year) - x0 ? d1 : d0; */
+      		const d2 = x0 - (d0.Year) > (d1.Year) - x0 ? d1 : d0; 
       		focus.attr('transform', 'translate(${x(d2.Year)}, ${y(d2.value)})');
       		focus.select('line.x')
         		.attr('x1', 0)
