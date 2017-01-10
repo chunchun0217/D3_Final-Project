@@ -126,29 +126,24 @@ var yAxis = d3.svg.axis()
 
 var divTooltip = d3.select("body").append("div").attr("class", "toolTip");
 
-
 var svg = d3.select("body").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
     .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-
-dataset = [
-    {label:"Men", "Not Satisfied":20, "Not Much Satisfied":10, "Satisfied": 50, "Very Satisfied":20},
-    {label:"Women", "Not Satisfied":15, "Not Much Satisfied":30, "Satisfied":40, "Very Satisfied":15}
-];
-
-
-var options = d3.keys(dataset[0]).filter(function(key) { return key !== "label"; });
-
-dataset.forEach(function(d) {
-    d.valores = options.map(function(name) { return {name: name, value: +d[name]}; });
+  d3.csv("cwurData.csv", function(error, data){
+    csv = csv.filter(function(row){
+      return row['institution'] == 'National Taiwan University';
+    })
+    var options = d3.keys(data[0]).filter(function(key) { return key !== "institution"; });
+    data.forEach(function(d) {
+    d.valores = options.map(function(institution) { return {institution: data.institution, value: +d[institution]}; });
 });
 
-x0.domain(dataset.map(function(d) { return d.label; }));
+x0.domain(data.map(function(d) { return d.institution; }));
 x1.domain(options).rangeRoundBands([0, x0.rangeBand()]);
-y.domain([0, d3.max(dataset, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
+y.domain([0, d3.max(data, function(d) { return d3.max(d.valores, function(d) { return d.value; }); })]);
 
 svg.append("g")
     .attr("class", "x axis")
@@ -163,23 +158,23 @@ svg.append("g")
     .attr("y", 6)
     .attr("dy", ".71em")
     .style("text-anchor", "end")
-    .text("Satisfaction %");
+    .text("Rank");
 
 var bar = svg.selectAll(".bar")
-    .data(dataset)
+    .data(data)
     .enter().append("g")
     .attr("class", "rect")
-    .attr("transform", function(d) { return "translate(" + x0(d.label) + ",0)"; });
+    .attr("transform", function(d) { return "translate(" + x0(d.institution) + ",0)"; });
 
 bar.selectAll("rect")
     .data(function(d) { return d.valores; })
     .enter().append("rect")
     .attr("width", x1.rangeBand())
-    .attr("x", function(d) { return x1(d.name); })
+    .attr("x", function(d) { return x1(d.institution); })
     .attr("y", function(d) { return y(d.value); })
-    .attr("value", function(d){return d.name;})
+    .attr("value", function(d){return d.institution;})
     .attr("height", function(d) { return height - y(d.value); })
-    .style("fill", function(d) { return color(d.name); });
+    .style("fill", function(d) { return color(d.institution); });
 
 bar
     .on("mousemove", function(d){
@@ -191,7 +186,7 @@ bar
         l = elements.length
         l = l-1
         elementData = elements[l].__data__
-        divTooltip.html((d.label)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
+        divTooltip.html((d.institution)+"<br>"+elementData.name+"<br>"+elementData.value+"%");
     });
 bar
     .on("mouseout", function(d){
