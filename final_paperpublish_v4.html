@@ -64,7 +64,7 @@ var	svg = d3.select("body")
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 // Get the data
-d3.csv("https://bensontklin.github.io/D3_FinalTK/data/ntu_paper_publish.csv", function(error, data) {
+d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", function(error, data) {
 	if (error) throw error;
 	
 	var flatData = [];
