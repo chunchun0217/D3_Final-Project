@@ -121,7 +121,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 	
 	svg.append("text")
 		.attr("transform", "rotate(-90)")
-		.attr("x", -100)
+		.attr("x", -130)
 		.attr("y", -40)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
@@ -188,6 +188,7 @@ d3.csv("https://bensontklin.github.io/D3_FinalProject/data/ntu_paper_publish.csv
 		console.log(x0);
 		var bisectYear = d3.bisector(function(d, x) { return d.Year - x; }).right;
      		var i = bisectYear(data, x0);
+		console.log(data);
 		console.log(i);
       		const d0 = data[i - 1];
       		const d1 = data[i];
