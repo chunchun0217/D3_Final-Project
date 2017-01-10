@@ -37,30 +37,30 @@ path {
 }
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/d3.v4.min.js"></script>
 <script data-require="d3@3.4.6" data-semver="3.4.6" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.6/d3.min.js"></script>
 
 <script>
 var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
-var	parseDate = d3.time.format("%Y").parse;
-var	x = d3.time.scale().range([0, width]);
-var	y = d3.scale.linear().range([height, 0]);
-var	xAxis = d3.svg.axis().scale(x)
+//var	parseDate = d3.time.format("%Y").parse;
+var	x = d3.scaleTime().range([0, width]);
+var	y = d3.scaleLinear().range([height, 0]);
+var	xAxis = d3.axis(x)
 	.orient("bottom").ticks(5);
-var	yAxis = d3.svg.axis().scale(y)
+var	yAxis = d3.axis(y)
 	.orient("left").ticks(5);
 	
 var 	voronoi = d3.geom.voronoi()
     	.x(function(d) { return x(d.Year); })
     	.y(function(d) { return y(d.value); })
     	.clipExtent([[-margin.left, -margin.top], [width + margin.right, height + margin.bottom]]);
-var	valueline = d3.svg.line()
+var	valueline = d3.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Science); });
 	
-var	valueline2 = d3.svg.line()
+var	valueline2 = d3.line()
 	.x(function(d) { return x(d.Year); })
 	.y(function(d) { return y(d.Society); });
 var	svg = d3.select("body")
