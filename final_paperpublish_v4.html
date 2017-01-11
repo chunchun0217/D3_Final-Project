@@ -163,6 +163,8 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
       		.attr("class", "overlay")
       		.attr("width", width)
       		.attr("height", height)
+	        .on("mouseover", function() { focus.style("display", null); })
+        	.on("mouseout", function() { focus.style("display", "none"); })
         	.on("mousemove", mousemove);
 
     	d3.select('.overlay')
