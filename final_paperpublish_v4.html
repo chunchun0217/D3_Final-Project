@@ -38,12 +38,13 @@ body { font: 12px Arial;}
 <script src='https://npmcdn.com/babel-core@5.8.34/browser.min.js'></script>
 	
 <script>
-var	margin = {top: 50, right: 50, bottom: 30, left: 70},
-	width = 800 - margin.left - margin.right,
-	height = 300 - margin.top - margin.bottom;
+var	svg_tk_margin = {top: 50, right: 50, bottom: 30, left: 70},
+	svg_tk_width = 800 - svg_tk_margin.left - svg_tk_margin.right,
+	svg_tk_height = 300 - svg_tk_margin.top - svg_tk_margin.bottom;
+	
 var	parseTime = d3.timeParse("%Y");
-var	x = d3.scaleTime().range([0, width]);
-var	y = d3.scaleLinear().range([height, 0]);
+var	x = d3.scaleTime().range([0, svg_tk_width]);
+var	y = d3.scaleLinear().range([svg_tk_height, 0]);
 var	xAxis = d3.axisBottom(x)
 	.ticks(5);
 var	yAxis = d3.axisLeft(y)
@@ -59,10 +60,10 @@ var	valueline2 = d3.line()
 	
 var	svg = d3.select("body")
 	.append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
+	.attr("width", svg_tk_width + svg_tk_margin.left + svg_tk_margin.right)
+	.attr("height", svg_tk_height + svg_tk_margin.top + svg_tk_margin.bottom)
 	.append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+	.attr("transform", "translate(" + svg_tk_margin.left + "," + svg_tk_margin.top + ")");
 // Get the data
 d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", function(error, data) {
 	if (error) throw error;
@@ -86,7 +87,7 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
         	.attr("class", "axis")
         	.attr("text-anchor", "start")
             	.attr("font-size", "28px")
-            	.attr("x", margin.left)
+            	.attr("x", svg_tk_margin.left)
             	.attr("y", -25)
 		.text("Paper publish of NTU");
 	
@@ -104,12 +105,12 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	
 	svg.append("g")			// Add the X Axis
 		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
+		.attr("transform", "translate(0," + svg_tk_height + ")")
 		.call(xAxis);
 		
 	svg.append("text")
 		.attr("x", 700 )
-		.attr("y", height+30)
+		.attr("y", svg_tk_height+30)
 		.attr("font-size", "15px")
 		.attr("font-weight", "bold")
 		.style("text-anchor", "middle")
@@ -130,7 +131,7 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 		.text("Paper publish amount");
 	
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Science) + ")")
+		.attr("transform", "translate(" + (svg_tk_width+3) + "," + y(data[0].Science) + ")")
 		.attr("text-anchor", "start")
 		.style("fill", "steelblue")
 		.attr("font-size", "12px")
@@ -138,13 +139,13 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 		.text("Science");
 	
 	svg.append("text")
-		.attr("transform", "translate(" + (width+3) + "," + y(data[0].Society) + ")")
+		.attr("transform", "translate(" + (svg_tk_width+3) + "," + y(data[0].Society) + ")")
 		.attr("text-anchor", "start")
 		.style("fill", "red")
 		.attr("font-size", "12px")
 		.attr("font-weight", "bold")
 		.text("Society");
-	
+/*	
 	const focus = svg.append("g")
       		.attr("class", "focus")
       		.attr("display", "none");
@@ -161,8 +162,8 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	 
 	svg.append("rect")
       		.attr("class", "overlay")
-      		.attr("width", width)
-      		.attr("height", height)
+      		.attr("width", svg_tk_width)
+      		.attr("height", svg_tk_height)
 	        .on("mouseover", function() { focus.style("display", null); })
         	.on("mouseout", function() { focus.style("display", "none"); })
         	.on("mousemove", mousemove);
@@ -207,10 +208,10 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
         		.attr('x1', 0)
         		.attr('x2', 0)
         		.attr('y1', 0)
-        		.attr('y2', height - y(d2.value));
+        		.attr('y2', svg_tk_height - y(d2.value));
 
       		focus.select('text').text(d2.Year + ":  " + d2.value);
-    }           
+    }           */
 });
 </script>
 </body>
