@@ -78,9 +78,9 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	});
 		
 	// Scale the range of the data
-	x.domain(d3.extent(data, function(d) { return d.Year; }));
+	x.domain(d3.extent(data, function(d) { return data.Year; }));
 	console.log(data);
-	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
+	y.domain([0, d3.max(data, function(d) { return Math.max(data.Science); })]);
 	
  	svg.append('text')
         	.attr("class", "axis")
