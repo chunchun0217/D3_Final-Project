@@ -70,14 +70,16 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	
 	var flatData = [];
 	data.forEach(function(d) {
-		d.Year = parseTime(d.Year);
-		d.Science = +d.Science;
-		d.Society = +d.Society;
+		data.Year = parseTime(d.Year);
+		data.Science = +d.Science;
+		data.Society = +d.Society;
+		flatData.push({Year: data.Year, value: data.Science, key:"Science"});
+		flatData.push({Year: data.Year, value: data.Society, key:"Society"});
+
 	});
 		
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.Year; }));
-	console.log(d3.extent(data, function(d) { return d.Year; }));
 	console.log(data);
 	y.domain([0, d3.max(data, function(d) { return Math.max(d.Science); })]);
 	
