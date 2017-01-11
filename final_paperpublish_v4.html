@@ -41,8 +41,8 @@ body { font: 12px Arial;}
 var	margin = {top: 50, right: 50, bottom: 30, left: 70},
 	width = 800 - margin.left - margin.right,
 	height = 300 - margin.top - margin.bottom;
-//var	parseDate = d3.timeParse("%Y");
-var	x = d3.scaleLinear().range([0, width]);
+var	parseDate = d3.timeParse("%Y");
+var	x = d3.scaleTime().range([0, width]);
 var	y = d3.scaleLinear().range([height, 0]);
 var	xAxis = d3.axisBottom(x)
 	.ticks(5);
