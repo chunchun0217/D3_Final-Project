@@ -36,6 +36,7 @@ body { font: 12px Arial;}
 <script src="http://d3js.org/d3.v4.min.js"></script>
 <script src="https://d3js.org/d3-selection-multi.v0.4.min.js"></script>
 <script src='https://npmcdn.com/babel-core@5.8.34/browser.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
 	
 <script>
 var	margin = {top: 50, right: 50, bottom: 30, left: 70},
@@ -69,12 +70,11 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	
 	var flatData = [];
 	data.forEach(function(d) {
-		d.Year = +d.Year;
+		d.Year = parseTime(d.Year);
 		d.Science = +d.Science;
 		d.Society = +d.Society;
-		flatData.push({Year: d.Year, value: d.Science, key:"Science"});
-		flatData.push({Year: d.Year, value: d.Society, key:"Society"});
 	});
+		
 	// Scale the range of the data
 	x.domain(d3.extent(data, function(d) { return d.Year; }));
 	console.log(d3.extent(data, function(d) { return d.Year; }));
@@ -186,7 +186,7 @@ d3.csv("https://bensontklin.github.io/D3_Final_TK/data/ntu_paper_publish.csv", f
 	function mousemove() {
       		const x0 = x.invert(d3.mouse(this)[0]);
 		console.log(x0);
-		var bisectYear = d3.bisector(function(d) { return d.Yea; }).right;
+		var bisectYear = d3.bisector(function(d) { return d.Year; }).right;
      		var i = bisectYear(data, x0, 1);
 		console.log(i);
       		const d0 = data[i - 1];
